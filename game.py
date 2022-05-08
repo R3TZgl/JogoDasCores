@@ -45,14 +45,9 @@ while True:
             exit()
         
         if evento.type == pygame.MOUSEBUTTONDOWN: 
-            if retangulos[0].collidepoint(mouse_pos):
-                print('Pressionou o vermelho') 
-            elif retangulos[1].collidepoint(mouse_pos):
-                print('Pressionou o azul')
-            elif retangulos[2].collidepoint(mouse_pos):
-                print('Pressionou o verde')
-            elif retangulos[3].collidepoint(mouse_pos):
-                print('Pressionou o amarelo')    
+            if retangulos[num_rect].collidepoint(mouse_pos):
+                print(f'Pressionou o {retangulos[num_rect]} ') 
+                
             
             
             if texto_rect.collidepoint(mouse_pos):
@@ -72,10 +67,14 @@ while True:
     
     
     janela.fill((0,0,0))
-    vermelho = retangulo(janela, red, (10, 10, b, h ))
-    azul = retangulo(janela, blue, (10 ,310, b, h))
-    verde = retangulo(janela, green, (410 ,10, b, h))
-    amarelo = retangulo(janela, yellow, (410, 310, b, h))
+    if num_rect == 0:
+        vermelho = retangulo(janela, red, (10, 10, b, h ))
+    if num_rect == 1:
+        azul = retangulo(janela, blue, (10 ,310, b, h))
+    if num_rect == 2:
+        verde = retangulo(janela, green, (410 ,10, b, h))
+    if num_rect == 3:
+        amarelo = retangulo(janela, yellow, (410, 310, b, h))
     
     if fase == 0:
         janela.blit((texto), texto_rect)
