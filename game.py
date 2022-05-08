@@ -2,6 +2,7 @@ import pygame
 from sys import exit
 from pygame.locals import *
 from time import sleep
+from random import randint
 from retangulos import retangulo
 
 pygame.init()
@@ -58,7 +59,7 @@ while True:
                 print('Iniciar')   
                 fase += 1  
              
-                
+    num_rect = randint(0,4)            
     mouse_pos = pygame.mouse.get_pos()
 
     retangulos = [vermelho, azul, verde, amarelo] 
