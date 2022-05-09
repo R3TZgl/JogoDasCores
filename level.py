@@ -1,9 +1,10 @@
+from ast import Break
 import pygame
+fase = 1
 
-
-def fase(a):
+def lvl(f):
     
-    while fase == a:
+    while True:
         if num_rect == 0:
             vermelho = retangulo(janela, red, (10, 10, b, h ))
         if num_rect == 1:
@@ -14,7 +15,26 @@ def fase(a):
             amarelo = retangulo(janela, yellow, (410, 310, b, h))
         for evento in pygame.event.get():
             if evento.type == pygame.MOUSEBUTTONDOWN:
-                if retangulos[num_rect].collidepoint(mouse_pos):
-                    print(f'Pressionou o {retangulos[num_rect]} ')
-    return                
+                if vermelho.collidepoint(mouse_pos):
+                    print(f'Pressionou o vermelho ')
+                    f = True
+                    fase += 1
+                elif azul.collidepoint(mouse_pos):
+                    print('Pressionou o azul')
+                    f = True
+                    fase += 1
+                elif verde.collidepoint(mouse_pos):
+                    print('Pressionou o verde')
+                    f = True
+                    fase += 1
+                elif amarelo.collidepoint(mouse_pos):
+                    print('Pressionou o amarelo')    
+                    f = True
+                    fase += 1
+                else:
+                    f = False
+        if fase == 2:
+            break
+        pygame.display.update()
+    return f                
     
