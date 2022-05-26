@@ -33,6 +33,12 @@ green = (0,255,0)
 blue = (0,0,255)
 yellow = (255,255,0)
 
+vermelho = pygame.draw.rect(janela, red, red_rect)
+azul = pygame.draw.rect(janela, blue, blue_rect)
+verde = pygame.draw.rect(janela, green, green_rect)
+amarelo = pygame.draw.rect(janela, yellow, yellow_rect)
+
+retangulos = [vermelho, azul, verde, amarelo]
 
 fonte = pygame.font.SysFont('arial', 60, True, False)
 mensagem = 'INICIAR'
@@ -42,13 +48,16 @@ texto_rect = texto.get_rect(center = (400,300))
 fps = pygame.time.Clock()
 botao_iniciar = True
 
+pontos = 0
+tempo = 0
+num_rect = randint(0,3)
+anterior = num_rect
 
 #Jogo
 while True:
     janela.fill((0,0,0))
     mouse_pos = pygame.mouse.get_pos()
-    num_rect = randint(0,4)    
-    retangulos = [vermelho, azul, verde, amarelo]
+        
     
     for evento in pygame.event.get():
         if evento.type == pygame.QUIT:
@@ -62,29 +71,54 @@ while True:
                 level += 1
                     
     if botao_iniciar:
-        vermelho = retangulo(janela, red, red_rect)
-        azul = retangulo(janela, blue, blue_rect)
-        verde = retangulo(janela, green, green_rect)
-        amarelo = retangulo(janela, yellow, yellow_rect)
+        retangulo(janela, red, red_rect)
+        retangulo(janela, blue, blue_rect)
+        retangulo(janela, green, green_rect)
+        retangulo(janela, yellow, yellow_rect)
         
         janela.blit((texto), texto_rect)
     else:    
         while fase == 1:
-            for evento in pygame.event.get():
-                if evento.type == pygame.QUIT:
-                    pygame.quit()
-                    exit()
-            
-            if num_rect == 0:
-                vermelho = retangulo(janela, red, red_rect)
-            elif num_rect == 1:
-                azul = retangulo(janela, blue, blue_rect)
-            elif num_rect == 2:
-                verde = retangulo(janela, green, green_rect)
-            elif num_rect == 3:
-                amarelo = retangulo(janela, yellow, yellow_rect)
+            while True:
+                num_rect = randint(0,3)
+                if num_rect != anterior:
+                    break
 
-            print(retangulos[num_rect])
+            anterior = num_rect
+
+            while True:
+                for evento in pygame.event.get():
+                    if evento.type == pygame.QUIT:
+                        pygame.quit()
+                        exit()
+                
+                janela.fill((0,0,0))
+                mouse_pos = pygame.mouse.get_pos()
+
+                if num_rect == 0:
+                    retangulo(janela, red, red_rect)
+                elif num_rect == 1:
+                    retangulo(janela, blue, blue_rect)
+                elif num_rect == 2:
+                    retangulo(janela, green, green_rect)
+                elif num_rect == 3:
+                    retangulo(janela, yellow, yellow_rect)
+
+                if evento.type == pygame.MOUSEBUTTONDOWN:
+                    if retangulos[num_rect].collidepoint(mouse_pos):
+                        print("clicou")  
+                        pontos += 1
+                        break
+                      
+
+                tempo += 1
+                if tempo == 5000:
+                    tempo = 0
+                    break
+            
+            if pontos == 5:
+                print("Ganhou")
+                break
 
 
             pygame.display.update()
@@ -92,16 +126,8 @@ while True:
 
     
 
-                
-
-            
-   
-        
-        
-        
- 
     if botao_iniciar == False:
         fase = 1
     
     pygame.display.update()
-    fps.tick(60)
+    fps.tick(10)
