@@ -22,10 +22,10 @@ fase = 0
 level = 0
 
 # Retângulos de fundo
-vermelho = pygame.draw.rect(janela, (255,0,0), (10, 10, b, h ))
-azul = pygame.draw.rect(janela, (0,0,255), (10 ,310, b, h))
-verde = pygame.draw.rect(janela, (0,255,0), (410 ,10, b, h))
-amarelo = pygame.draw.rect(janela, (255,255,0), (410, 310, b, h))
+red_rect = (10, 10, b, h )
+blue_rect = (10 ,310, b, h)
+green_rect = (410 ,10, b, h)
+yellow_rect = (410, 310, b, h)
 
 #cores
 red = (255,0,0)
@@ -62,23 +62,30 @@ while True:
                 level += 1
                     
     if botao_iniciar:
-        vermelho = retangulo(janela, red, (10, 10, b, h ))
-        azul = retangulo(janela, blue, (10 ,310, b, h))
-        verde = retangulo(janela, green, (410 ,10, b, h))
-        amarelo = retangulo(janela, yellow, (410, 310, b, h))
+        vermelho = retangulo(janela, red, red_rect)
+        azul = retangulo(janela, blue, blue_rect)
+        verde = retangulo(janela, green, green_rect)
+        amarelo = retangulo(janela, yellow, yellow_rect)
         
         janela.blit((texto), texto_rect)
     else:    
         while fase == 1:
+            for evento in pygame.event.get():
+                if evento.type == pygame.QUIT:
+                    pygame.quit()
+                    exit()
             
             if num_rect == 0:
-                vermelho = retangulo(janela, red, (10, 10, b, h ))
+                vermelho = retangulo(janela, red, red_rect)
             elif num_rect == 1:
-                azul = retangulo(janela, blue, (10 ,310, b, h))
+                azul = retangulo(janela, blue, blue_rect)
             elif num_rect == 2:
-                verde = retangulo(janela, green, (410 ,10, b, h))
+                verde = retangulo(janela, green, green_rect)
             elif num_rect == 3:
-                amarelo = retangulo(janela, yellow, (410, 310, b, h))
+                amarelo = retangulo(janela, yellow, yellow_rect)
+
+            print(retangulos[num_rect])
+
 
             pygame.display.update()
 
