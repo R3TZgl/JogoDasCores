@@ -110,7 +110,6 @@ while True:
                         pontos += 1
                         break
                       
-
                 tempo += 1
                 if tempo == 5000:
                     tempo = 0
