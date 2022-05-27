@@ -79,10 +79,8 @@ while True:
         janela.blit((texto), texto_rect)
     else:    
         while fase == 1:
-            while True:
+            while num_rect == anterior:
                 num_rect = randint(0,3)
-                if num_rect != anterior:
-                    break
 
             anterior = num_rect
 
@@ -111,7 +109,7 @@ while True:
                         break
                       
                 tempo += 1
-                if tempo == 5000:
+                if tempo == 50000:
                     tempo = 0
                     break
             
@@ -129,4 +127,4 @@ while True:
         fase = 1
     
     pygame.display.update()
-    fps.tick(10)
+    fps.tick(60)
