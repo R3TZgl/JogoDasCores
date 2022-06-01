@@ -81,11 +81,13 @@ while True:
         janela.blit((texto), texto_rect)
     else:    
         while fase == 1:
-
-            while num_rect == anterior:
-                num_rect = randint(0,3)
-
             anterior = num_rect
+            num_rect = randint(0,3)
+            
+            if num_rect == anterior:
+                while num_rect == anterior:
+                    num_rect = randint(0,3)
+
 
             while iniciar:
                 for evento in pygame.event.get():
