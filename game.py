@@ -21,7 +21,7 @@ h = 280
 fase = 0
 level = 0
 
-# Retângulos de fundo
+#Retângulos de fundo
 red_rect = (10, 10, b, h )
 blue_rect = (10 ,310, b, h)
 green_rect = (410 ,10, b, h)
@@ -40,6 +40,7 @@ amarelo = pygame.draw.rect(janela, yellow, yellow_rect)
 
 retangulos = [vermelho, azul, verde, amarelo]
 
+#Definições para funções
 fonte = pygame.font.SysFont('arial', 60, True, False)
 mensagem = 'INICIAR'
 texto = fonte.render(mensagem, True, (255,255,255))
@@ -65,13 +66,16 @@ while True:
         if evento.type == pygame.QUIT:
             pygame.quit()
             exit()
+
+        #Botão iniciar
         if evento.type == pygame.MOUSEBUTTONDOWN: 
             if texto_rect.collidepoint(mouse_pos):
                 if fase == 0:
                     print('Iniciar')
                 botao_iniciar = False    
                 level += 1
-                    
+    
+    #Tela inicial                
     if botao_iniciar:
         retangulo(janela, red, red_rect)
         retangulo(janela, blue, blue_rect)
@@ -79,7 +83,8 @@ while True:
         retangulo(janela, yellow, yellow_rect)
         
         janela.blit((texto), texto_rect)
-    else:    
+    else:  
+        #Fases  
         while fase == 1:
             anterior = num_rect
             num_rect = randint(0,3)
@@ -88,7 +93,7 @@ while True:
                 while num_rect == anterior:
                     num_rect = randint(0,3)
 
-
+            #Saída
             while iniciar:
                 for evento in pygame.event.get():
                     if evento.type == pygame.QUIT:
@@ -108,7 +113,7 @@ while True:
                 elif num_rect == 3:
                     retangulo(janela, yellow, yellow_rect)
 
-
+                #Funções do jogo
                 if evento.type == pygame.MOUSEBUTTONDOWN:
                     if retangulos[num_rect].collidepoint(mouse_pos) or tempo == 5000:
                         print("clicou")  
@@ -121,6 +126,7 @@ while True:
                 tempo += 1
                 pygame.display.update()
             
+            #Contadores
             pausa += 1
             if pausa == 1000:
                 iniciar = True
