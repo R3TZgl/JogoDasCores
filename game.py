@@ -52,6 +52,8 @@ pontos = 0
 tempo = 0
 num_rect = randint(0,3)
 anterior = num_rect
+pausa = 0
+iniciar = True
 
 #Jogo
 while True:
@@ -79,16 +81,18 @@ while True:
         janela.blit((texto), texto_rect)
     else:    
         while fase == 1:
+
             while num_rect == anterior:
                 num_rect = randint(0,3)
 
             anterior = num_rect
 
-            while True:
+            while iniciar:
                 for evento in pygame.event.get():
                     if evento.type == pygame.QUIT:
                         pygame.quit()
                         exit()
+                
                 
                 janela.fill((0,0,0))
                 mouse_pos = pygame.mouse.get_pos()
@@ -102,22 +106,30 @@ while True:
                 elif num_rect == 3:
                     retangulo(janela, yellow, yellow_rect)
 
+
                 if evento.type == pygame.MOUSEBUTTONDOWN:
-                    if retangulos[num_rect].collidepoint(mouse_pos):
+                    if retangulos[num_rect].collidepoint(mouse_pos) or tempo == 5000:
                         print("clicou")  
+                        tempo = 0
+                        pausa = 0
                         pontos += 1
+
                         break
                       
                 tempo += 1
-                if tempo == 50000:
-                    tempo = 0
-                    break
+                pygame.display.update()
             
+            pausa += 1
+            if pausa == 1000:
+                iniciar = True
+            else:
+                iniciar = False
+
             if pontos == 5:
                 print("Ganhou")
                 break
 
-
+            janela.fill((0,0,0))
             pygame.display.update()
 
 
