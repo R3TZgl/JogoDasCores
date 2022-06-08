@@ -45,6 +45,8 @@ fonte = pygame.font.SysFont('arial', 60, True, False)
 mensagem = 'INICIAR'
 texto = fonte.render(mensagem, True, (255,255,255))
 texto_rect = texto.get_rect(center = (400,300))
+musica = pygame.mixer.music.load("audio/axelay.mp3")
+pygame.mixer.music.play(-1)
 
 fps = pygame.time.Clock()
 botao_iniciar = True
@@ -93,7 +95,7 @@ while True:
                 while num_rect == anterior:
                     num_rect = randint(0,3)
 
-            #Saída
+            #Saída 
             while iniciar:
                 for evento in pygame.event.get():
                     if evento.type == pygame.QUIT:
@@ -134,7 +136,7 @@ while True:
                 iniciar = False
 
             if pontos == 5:
-                print("Ganhou")
+                janela.blit((texto), texto_rect)
                 break
 
             janela.fill((0,0,0))
