@@ -6,6 +6,7 @@ from random import randint
 from retangulos import retangulo
 
 
+
 pygame.init()
 
 
@@ -56,7 +57,7 @@ tempo = 0
 num_rect = randint(0,3)
 anterior = num_rect
 pausa = 0
-iniciar = True
+fase1 = True
 
 #Jogo
 while True:
@@ -96,7 +97,7 @@ while True:
                     num_rect = randint(0,3)
 
             #Saída 
-            while iniciar:
+            while fase1:
                 for evento in pygame.event.get():
                     if evento.type == pygame.QUIT:
                         pygame.quit()
@@ -122,7 +123,6 @@ while True:
                         tempo = 0
                         pausa = 0
                         pontos += 1
-
                         break
                       
                 tempo += 1
@@ -131,9 +131,9 @@ while True:
             #Contadores
             pausa += 1
             if pausa == 1000:
-                iniciar = True
+                fase1 = True
             else:
-                iniciar = False
+                fase1 = False
 
             if pontos == 5:
                 janela.blit((texto), texto_rect)
