@@ -86,6 +86,7 @@ while True:
         retangulo(janela, yellow, yellow_rect)
         
         janela.blit((texto), texto_rect)
+    
     else:  
         #Fases  
         while fase == 1:

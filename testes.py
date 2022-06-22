@@ -27,12 +27,14 @@ red_rect = (10, 10, b, h )
 blue_rect = (10 ,310, b, h)
 green_rect = (410 ,10, b, h)
 yellow_rect = (410, 310, b, h)
+rects = [red_rect,blue_rect,green_rect,yellow_rect]
 
 #cores
 red = (255,0,0)
-green = (0,255,0)
 blue = (0,0,255)
+green = (0,255,0)
 yellow = (255,255,0)
+cores = [red,blue,green,yellow]
 
 vermelho = pygame.draw.rect(janela, red, red_rect)
 azul = pygame.draw.rect(janela, blue, blue_rect)
@@ -58,6 +60,9 @@ num_rect = randint(0,3)
 anterior = num_rect
 pausa = 0
 iniciar = True
+
+
+status = {}
 
 #Jogo
 while True:
@@ -87,9 +92,10 @@ while True:
         
         janela.blit((texto), texto_rect)
     else:  
-        #Fases  
-        level1 = Partes("fase1")
-        level1.fase()
+        #Fases 
+        num_rect = randint(0,3) 
+        level1 = Partes("fase1",janela,status)
+        status = level1.fase(cores,rects,num_rect,retangulos,5,3,3000)
             
             #Contadores
 
