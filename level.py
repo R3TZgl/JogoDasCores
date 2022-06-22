@@ -7,14 +7,14 @@ from retangulos import retangulo
 
 
 class Partes():
-    def __init__(self,nome,tela,status):
+    def __init__(self, nome, tela, status):
         self.nome = nome
         self.tela = tela
         self.status = status
     
 
 
-    def fase(self,cores,rect,num_rect,retangulos,etapas,acertos,time):
+    def fase(self, cores, rect, num_rect, retangulos, etapas, acertos, time):
         tentativas = 0
         acerto = 0
 
