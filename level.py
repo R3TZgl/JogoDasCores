@@ -14,9 +14,16 @@ class Partes():
     
 
 
-    def fase(self, cores, rect, num_rect, retangulos, etapas, acertos, time):
+    def fase(self, rect, num_rect, retangulos, etapas, acertos, time):
         tentativas = 0
         acerto = 0
+
+        red = (255,0,0)
+        blue = (0,0,255)
+        green = (0,255,0)
+        yellow = (255,255,0)
+        cores = [red,blue,green,yellow]
+
 
         while tentativas < etapas:
             tempo = 0

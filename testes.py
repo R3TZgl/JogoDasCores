@@ -61,8 +61,8 @@ anterior = num_rect
 pausa = 0
 iniciar = True
 
-
 status = {}
+
 
 #Jogo
 while True:
@@ -91,11 +91,12 @@ while True:
         retangulo(janela, yellow, yellow_rect)
         
         janela.blit((texto), texto_rect)
+
     else:  
         #Fases 
         num_rect = randint(0,3) 
         level1 = Partes("fase1",janela,status)
-        status = level1.fase(cores,rects,num_rect,retangulos,5,3,3000)
+        status = level1.fase(rects,num_rect,retangulos,5,3,3000)
             
             #Contadores
 
@@ -108,9 +109,6 @@ while True:
 
 
     
-
-    if botao_iniciar == False:
-        fase = 1
     
     pygame.display.update()
     fps.tick(60)
