@@ -95,8 +95,10 @@ while True:
     else:  
         #Fases 
         num_rect = randint(0,3) 
-        level1 = Partes("fase1",janela,status)
-        status = level1.fase(rects,num_rect,retangulos,5,3,3000)
+        level1 = Partes("fase1", janela, status)
+        status = level1.fase(rects, retangulos, 5, 3, 2)
+        if status[level1.nome][0] < status[level1.nome][1]:
+            print("Perdeu")
             
             #Contadores
 
