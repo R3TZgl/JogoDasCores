@@ -19,8 +19,7 @@ nome = pygame.display.set_caption('Jogo Sério')
 b = 380
 h = 280
 
-fase = 0
-level = 0
+fase = 1
 
 #Retângulos de fundo
 red_rect = (10, 10, b, h )
@@ -78,10 +77,9 @@ while True:
         #Botão iniciar
         if evento.type == pygame.MOUSEBUTTONDOWN: 
             if texto_rect.collidepoint(mouse_pos):
-                if fase == 0:
-                    print('Iniciar')
+                print('Iniciar')
                 botao_iniciar = False    
-                level += 1
+
     
     #Tela inicial                
     if botao_iniciar:
@@ -92,16 +90,42 @@ while True:
         
         janela.blit((texto), texto_rect)
 
-    else:  
-        #Fases 
+    else:   
         num_rect = randint(0,3) 
+        
+        #Fases
         level1 = Partes("fase1", janela, status)
-        status = level1.fase(rects, retangulos, 5, 3, 2)
+        level2 = Partes("fase2", janela, status)
+        level3 = Partes("fase3", janela, status)
+        level4 = Partes("fase4", janela, status)
+        level5 = Partes("fase5", janela, status)
+
+        if fase == 1:
+            status = level1.fase(rects, retangulos, 5, 3, 2)
+        
+        elif fase == 2:
+            status = level2.fase(rects, retangulos, 5, 3, 2)
+
+        elif fase == 3:
+            status = level3.fase(rects, retangulos, 5, 3, 2)
+
+        elif fase == 4:
+            status = level4.fase(rects, retangulos, 5, 3, 2)
+
+        elif fase == 5:
+            status = level5.fase(rects, retangulos, 5, 3, 2)
+
         if status[level1.nome][0] < status[level1.nome][1]:
             print("Perdeu")
+        else:
+            print("venceu")
+            fase += 1
             
-            #Contadores
-
+        
+        
+        
+        #Contadores
+        print(status)
         if pontos == 5:
             janela.blit((texto), texto_rect)
             break
