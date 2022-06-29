@@ -116,9 +116,9 @@ while True:
             status = level5.fase(rects, retangulos, 5, 3, 2)
 
         if status[level1.nome][0] < status[level1.nome][1]:
-            print("Perdeu")
+            print("\nPerdeu")
         else:
-            print("venceu")
+            print("\nvenceu")
             fase += 1
             
         
