@@ -51,6 +51,7 @@ class Partes():
                 
 
                 self.tela.fill((0,0,0))
+                mouse_pos = pygame.mouse.get_pos()
                 
 
                 #Escolha de retangulos na tela
@@ -68,7 +69,6 @@ class Partes():
                     fase = False
 
                 #Clique e colisão
-                mouse_pos = pygame.mouse.get_pos()
                 for evento in pygame.event.get():
                     if evento.type == pygame.MOUSEBUTTONDOWN:
                         if retangulos[num_rect].collidepoint(mouse_pos):

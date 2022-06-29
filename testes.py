@@ -101,37 +101,36 @@ while True:
         level5 = Partes("fase5", janela, status)
 
         if fase == 1:
-            status = level1.fase(rects, retangulos, 5, 3, 2)
+            status = level1.fase(rects, retangulos, 5, 0, 1)
         
         elif fase == 2:
-            status = level2.fase(rects, retangulos, 5, 3, 2)
+            status = level2.fase(rects, retangulos, 5, 0, 1)
 
         elif fase == 3:
-            status = level3.fase(rects, retangulos, 5, 3, 2)
+            status = level3.fase(rects, retangulos, 5, 0, 1)
 
         elif fase == 4:
-            status = level4.fase(rects, retangulos, 5, 3, 2)
+            status = level4.fase(rects, retangulos, 5, 0, 1)
 
         elif fase == 5:
-            status = level5.fase(rects, retangulos, 5, 3, 2)
+            status = level5.fase(rects, retangulos, 5, 0, 1)
 
-        if status[level1.nome][0] < status[level1.nome][1]:
-            print("\nPerdeu")
-        else:
-            print("\nvenceu")
-            fase += 1
+        if fase > 5:
+            mensagem = "FIM"
+            texto = fonte.render(mensagem, True, (255,255,255))
+            texto_rect = texto.get_rect(center = (400,300))
+
+        if fase <= 5:
+            if status[level1.nome][0] < status[level1.nome][1]:
+                print("\nPerdeu")
+            else:
+                print("\nvenceu")
+                fase += 1
+            
             
         
-        
-        
-        #Contadores
-        print(status)
-        if pontos == 5:
-            janela.blit((texto), texto_rect)
-            break
-
         janela.fill((0,0,0))
-        pygame.display.update()
+        janela.blit((texto), texto_rect)
 
 
     
