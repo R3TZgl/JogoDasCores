@@ -1,5 +1,5 @@
 import pygame
-from sys import exit
+from sys import exit, float_repr_style
 from pygame.locals import *
 from time import sleep
 from random import randint
@@ -14,9 +14,8 @@ class Partes():
     
 
 
-    def fase(self, rect, retangulos, etapas, acertos, time):
-        tentativas = 0
-        acerto = 0
+    def fase(self, rect, retangulos, etapas, acertos, time, simultaneo):
+        tentativas, acerto = 0, 0
 
         red = (255,0,0)
         blue = (0,0,255)
@@ -38,11 +37,18 @@ class Partes():
                 pygame.display.update()
                 sleep(0.7)
 
-        
-            num_rect = randint(0,3)
-            tempo = 0
-            fase = True
 
+            num_rect = randint(0,3)
+            segundo = randint(0,3)
+            escolha = randint(0,1)
+            apertos, tempo = 0, 0
+            fase, rect_1, rect_2 = True, True, True
+            
+            while segundo == num_rect:
+                segundo = randint(0,3)
+
+            
+            #fase
             while fase:
                 for evento in pygame.event.get():
                     if evento.type == pygame.QUIT:
@@ -64,18 +70,51 @@ class Partes():
                 elif num_rect == 3:
                     retangulo(self.tela, cores[3], rect[3])
 
+                #adição de mais um retângulo
+                if simultaneo and escolha == 1:
+                    if segundo == 0:
+                        retangulo(self.tela, cores[0], rect[0])
+                    elif segundo == 1:
+                        retangulo(self.tela, cores[1], rect[1])
+                    elif segundo == 2:
+                        retangulo(self.tela, cores[2], rect[2])
+                    elif segundo == 3:
+                        retangulo(self.tela, cores[3], rect[3])
+
+
                 if tempo == time*500:
                     tentativas += 1
                     fase = False
 
-                #Clique e colisão
+                #clique e colisão
                 for evento in pygame.event.get():
-                    if evento.type == pygame.MOUSEBUTTONDOWN:
-                        if retangulos[num_rect].collidepoint(mouse_pos):
-                            print("clicou")
+                    #para dois retângulos
+                    if simultaneo and escolha == 1:
+                        if evento.type == pygame.MOUSEBUTTONDOWN and rect_1:
+                            if retangulos[num_rect].collidepoint(mouse_pos) :
+                                print("clicou no primeiro")
+                                apertos += 1
+                                rect_1 = False
+                        elif evento.type == pygame.MOUSEBUTTONDOWN and rect_2:
+                            if retangulos[segundo].collidepoint(mouse_pos) :
+                                print("clicou no segundo")
+                                apertos += 1
+                                rect_2 = False                               
+
+                        if apertos == 2:
                             acerto += 1
                             tentativas += 1
                             fase = False
+                            print("clicou nos dois")
+
+                    else:
+                        #para um retângulo
+                        if evento.type == pygame.MOUSEBUTTONDOWN:
+                            if retangulos[num_rect].collidepoint(mouse_pos):
+                                print("clicou")
+                                acerto += 1
+                                tentativas += 1
+                                fase = False
                         
                 tempo += 1
                 
@@ -88,5 +127,5 @@ class Partes():
         self.status[self.nome] = [acerto, acertos, etapas]
 
         return self.status
-            
+        
         

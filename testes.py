@@ -10,6 +10,7 @@ from level import Partes
 pygame.init()
 
 
+#configurações de tela
 largura = 800
 altura = 600
 
@@ -18,8 +19,6 @@ nome = pygame.display.set_caption('Jogo Sério')
 
 b = 380
 h = 280
-
-fase = 1
 
 #Retângulos de fundo
 red_rect = (10, 10, b, h )
@@ -35,11 +34,11 @@ green = (0,255,0)
 yellow = (255,255,0)
 cores = [red,blue,green,yellow]
 
+#print na tela
 vermelho = pygame.draw.rect(janela, red, red_rect)
 azul = pygame.draw.rect(janela, blue, blue_rect)
 verde = pygame.draw.rect(janela, green, green_rect)
 amarelo = pygame.draw.rect(janela, yellow, yellow_rect)
-
 retangulos = [vermelho, azul, verde, amarelo]
 
 #Definições para funções
@@ -61,7 +60,7 @@ pausa = 0
 iniciar = True
 
 status = {}
-
+fase = 1
 
 #Jogo
 while True:
@@ -101,19 +100,19 @@ while True:
         level5 = Partes("fase5", janela, status)
 
         if fase == 1:
-            status = level1.fase(rects, retangulos, 5, 0, 1)
+            status = level1.fase(rects, retangulos, 5, 0, 1, False)
         
         elif fase == 2:
-            status = level2.fase(rects, retangulos, 5, 0, 1)
+            status = level2.fase(rects, retangulos, 5, 0, 1, False)
 
         elif fase == 3:
-            status = level3.fase(rects, retangulos, 5, 0, 1)
+            status = level3.fase(rects, retangulos, 5, 0, 1, False)
 
         elif fase == 4:
-            status = level4.fase(rects, retangulos, 5, 0, 1)
+            status = level4.fase(rects, retangulos, 5, 0, 1, True)
 
         elif fase == 5:
-            status = level5.fase(rects, retangulos, 5, 0, 1)
+            status = level5.fase(rects, retangulos, 5, 0, 1, True)
 
         if fase > 5:
             mensagem = "FIM"
