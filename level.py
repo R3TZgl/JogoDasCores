@@ -50,8 +50,8 @@ class Partes():
             
             #fase
             while fase:
-                for evento in pygame.event.get():
-                    if evento.type == pygame.QUIT:
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
                         pygame.quit()
                         exit()
                 
@@ -82,20 +82,24 @@ class Partes():
                         retangulo(self.tela, cores[3], rect[3])
 
 
-                if tempo == time*500:
+                if tempo == time * 500:
                     tentativas += 1
                     fase = False
 
                 #clique e colisão
-                for evento in pygame.event.get():
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        pygame.quit()
+                        exit()
+                        
                     #para dois retângulos
                     if simultaneo and escolha == 1:
-                        if evento.type == pygame.MOUSEBUTTONDOWN and rect_1:
+                        if event.type == pygame.MOUSEBUTTONDOWN and rect_1:
                             if retangulos[num_rect].collidepoint(mouse_pos) :
                                 print("clicou no primeiro")
                                 apertos += 1
                                 rect_1 = False
-                        elif evento.type == pygame.MOUSEBUTTONDOWN and rect_2:
+                        elif event.type == pygame.MOUSEBUTTONDOWN and rect_2:
                             if retangulos[segundo].collidepoint(mouse_pos) :
                                 print("clicou no segundo")
                                 apertos += 1
@@ -109,7 +113,7 @@ class Partes():
 
                     else:
                         #para um retângulo
-                        if evento.type == pygame.MOUSEBUTTONDOWN:
+                        if event.type == pygame.MOUSEBUTTONDOWN:
                             if retangulos[num_rect].collidepoint(mouse_pos):
                                 print("clicou")
                                 acerto += 1
@@ -117,15 +121,14 @@ class Partes():
                                 fase = False
                         
                 tempo += 1
-                
                 pygame.display.update()
-        
+                        
 
         if acerto < acertos:
             print("perdeu")
 
         self.status[self.nome] = [acerto, acertos, etapas]
-
+        print(self.status)
         return self.status
         
         

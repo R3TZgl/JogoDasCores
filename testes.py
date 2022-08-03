@@ -68,16 +68,16 @@ while True:
     mouse_pos = pygame.mouse.get_pos()
         
     
-    for evento in pygame.event.get():
-        if evento.type == pygame.QUIT:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
             pygame.quit()
             exit()
 
         #Botão iniciar
-        if evento.type == pygame.MOUSEBUTTONDOWN: 
+        if event.type == pygame.MOUSEBUTTONDOWN: 
             if texto_rect.collidepoint(mouse_pos):
                 print('Iniciar')
-                botao_iniciar = False    
+                botao_iniciar = False
 
     
     #Tela inicial                
@@ -99,6 +99,7 @@ while True:
         level4 = Partes("fase4", janela, status)
         level5 = Partes("fase5", janela, status)
 
+        #substitui o status antigo pelo o atualizado dentro da função fase
         if fase == 1:
             status = level1.fase(rects, retangulos, 5, 0, 1, False)
         
@@ -125,14 +126,11 @@ while True:
             else:
                 print("\nvenceu")
                 fase += 1
-            
-            
+                        
         
         janela.fill((0,0,0))
         janela.blit((texto), texto_rect)
 
-
-    
-    
+   
     pygame.display.update()
     fps.tick(60)
