@@ -61,26 +61,11 @@ class Partes():
                 
 
                 #Escolha de retangulos na tela
-                if num_rect == 0:
-                    retangulo(self.tela, cores[0], rect[0])
-                elif num_rect == 1:
-                    retangulo(self.tela, cores[1], rect[1])
-                elif num_rect == 2:
-                    retangulo(self.tela, cores[2], rect[2])
-                elif num_rect == 3:
-                    retangulo(self.tela, cores[3], rect[3])
+                retangulo(self.tela, cores[num_rect], rect[num_rect])
 
                 #adição de mais um retângulo
                 if simultaneo and escolha == 1:
-                    if segundo == 0:
-                        retangulo(self.tela, cores[0], rect[0])
-                    elif segundo == 1:
-                        retangulo(self.tela, cores[1], rect[1])
-                    elif segundo == 2:
-                        retangulo(self.tela, cores[2], rect[2])
-                    elif segundo == 3:
-                        retangulo(self.tela, cores[3], rect[3])
-
+                    retangulo(self.tela, cores[segundo], rect[segundo])
 
                 if tempo == time * 500:
                     tentativas += 1

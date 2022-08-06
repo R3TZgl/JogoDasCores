@@ -101,19 +101,19 @@ while True:
 
         #substitui o status antigo pelo o atualizado dentro da função fase
         if fase == 1:
-            status = level1.fase(rects, retangulos, 5, 0, 1, False)
+            status = level1.fase(rects, retangulos, 5, 0, 3, False)
         
         elif fase == 2:
-            status = level2.fase(rects, retangulos, 5, 0, 1, False)
+            status = level2.fase(rects, retangulos, 5, 0, 3, False)
 
         elif fase == 3:
-            status = level3.fase(rects, retangulos, 5, 0, 1, False)
+            status = level3.fase(rects, retangulos, 5, 0, 3, False)
 
         elif fase == 4:
-            status = level4.fase(rects, retangulos, 5, 0, 1, True)
+            status = level4.fase(rects, retangulos, 5, 0, 3, True)
 
         elif fase == 5:
-            status = level5.fase(rects, retangulos, 5, 0, 1, True)
+            status = level5.fase(rects, retangulos, 5, 0, 3, True)
 
         if fase > 5:
             mensagem = "FIM"
