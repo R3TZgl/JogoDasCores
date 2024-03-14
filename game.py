@@ -46,8 +46,8 @@ fonte = pygame.font.SysFont('arial', 60, True, False)
 mensagem = 'INICIAR'
 texto = fonte.render(mensagem, True, (255,255,255))
 texto_rect = texto.get_rect(center = (400,300))
-musica = pygame.mixer.music.load("audio/axelay.mp3")
-pygame.mixer.music.play(-1)
+#musica = pygame.mixer.music.load("audio/axelay.mp3")
+#pygame.mixer.music.play(-1)
 
 fps = pygame.time.Clock()
 botao_iniciar = True
@@ -144,7 +144,6 @@ while True:
             pygame.display.update()
 
 
-    
 
     if botao_iniciar == False:
         fase = 1
